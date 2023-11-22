@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.container{
+				width: 600px;
+				height: 600px;
+				border: 1px solid red;
+				display: flex;
+			}
+			.app{
+				background-color: blue;
+				width: 60px;
+				height: 60px;
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="app"></div>
+		</div>
+	</body>
+	<script>
+		let box = document.querySelector('.app')
+		toki = setInterval(frame,30)
+		let now = 60
+		function frame(){
+			if(now >= 300){
+				clearInterval(toki)
+			}else{
+				now++
+				box.style.width = now + 'px'
+				box.style.height = now + 'px'
+			}
+		}
+	</script>
+</html>

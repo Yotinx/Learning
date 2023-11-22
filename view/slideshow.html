@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js"></script>
+		<script src="https://kit.fontawesome.com/e2b84bda43.js" crossorigin="anonymous"></script>
+	</head>
+	<style>
+		*{
+			box-sizing: border-box;
+		}
+		.mask{
+			opacity: 0.6;
+			background-color: #bbb;
+		}
+		#app{
+			display: flex;
+			flex-flow: column nowrap;
+			justify-content: center;
+			align-items: center;
+			height: 600px;
+			width: 600px;
+			border: 1px solid red;
+			
+		}
+		.container{
+			position: relative;
+		}
+		.panel{
+			height: 200px;
+			width: 200px;
+			overflow: hidden;
+		}
+		.item{
+			width: 200px;
+			height: 200px;
+			transition:all 0.3s ease;
+		}
+		.arrow{
+			position: absolute;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 15px;
+			
+			height: 100%;
+			width: 60px;
+			background-color:rgba(10,10,10,0.1);
+			
+			top:0;
+			transition: all,0.3s,ease,0.3s;
+		}
+		.arrow:hover{
+			background-color:rgba(10,10,10,0.3);
+		}
+		.left{
+			left:-60px;
+		}
+		.right{
+			right:-60px;
+		}
+		.items{
+			width: 1200px;
+		}
+		
+	</style>
+	<body>
+		<div id="app">
+			<div class="container">
+				<div class="panel">			
+					<div class="items">
+						<img :src="piclist[i]" :style="dynamic()" class="item" v-for="path,i in piclist" />
+					</div>
+				</div>
+				<div class="left arrow" @click="prev()"><i class="fa-solid fa-arrow-left"></i></div>
+				<div class="right arrow" @click="nxt()"><i class="fa-solid fa-arrow-right"></i></div>
+			</div>
+		</div>
+		
+	</body>
+	<script>
+		let mvvm = new Vue({
+			el:'#app',
+			data:{
+				index:0,
+				piclist:['./pics/1.jpg','./pics/2.jpg','./pics/3.jpg'],
+			},
+			methods:{
+				nxt(){
+					this.index++
+					if(this.index==this.piclist.length){
+						this.index = 0
+					}
+				},
+				prev(){
+					this.index--
+					if(this.index==-1){
+						this.index = this.piclist.length-1
+					}	
+				},
+				
+				dynamic() {
+					return {
+						transform: `translateX(${-this.index*200}px)`,
+						// width:this.index*300 + 100 + 'px'
+					};
+				},
+				
+			},
+			
+		})
+	</script>
+</html>

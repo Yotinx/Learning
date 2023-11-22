@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style></style>
+		<script src="vue.js"></script>
+	</head>
+	
+	<body>
+		<div class="pics">
+			<div class="panel">
+				<img :src="piclist[i]"  v-for="v,i in piclist"
+				 v-if="i == now || now == piclist.length">
+			</div>
+			<button @click="nxt">下一张</button>
+		</div>
+		
+		
+	</body>
+	<script>
+		let app = new Vue({
+			el:'.pics',
+			data:{
+				piclist:['./pics/1.jpg','./pics/2.jpg','./pics/3.jpg'],
+				now:0,
+			},
+			methods:{
+				nxt(){
+					this.now += 1
+					if(this.now == this.piclist.length+1){
+						this.now = 0
+					}
+					console.log(this.now,this.piclist.length)
+				},
+				
+				
+				
+				
+			},
+			
+		})
+		
+		
+	</script>
+</html>
